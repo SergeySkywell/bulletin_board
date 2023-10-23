@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Объявления
+{% endblock title %}
+
+{% block content %}
+<hr>
+    {% if ads %}
+        <table>
+            <tr>
+                <td>Название</td>
+                <td>Дата публикации</td>
+                <td>Текст</td>
+            </tr>
+
+            {% for ad in ads %}
+            <tr>
+                <td>{{ ad.title }}</td>
+                <td>{{ ad.dateCreation|date:'d M Y' }}</td>
+                <td>{{ ad.text|truncatewords:20 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock content %}

@@ -29,6 +29,7 @@ class Advertisement(models.Model):
         (SPELLMASTERS, 'Мастера заклинаний')
     )
     category = models.CharField(max_length=2, choices=CATEGORY_CHOISES)
+    dateCreation = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.title}'
