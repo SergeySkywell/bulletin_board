@@ -37,4 +37,5 @@ class Advertisement(models.Model):
 
 class Response(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
     text = models.TextField()
