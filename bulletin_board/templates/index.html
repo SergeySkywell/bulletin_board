@@ -1,0 +1,16 @@
+{% extends 'flatpages/default.html' %}
+
+{% load socialaccount %}
+
+{% block title %}
+Index page
+{% endblock title %}
+
+{% block content %}
+{% if user.is_authentificated %}
+<h1>Здравствуйте</h1>
+<p>Вы зашли, как {{ user.username }}</p>
+{% else %}
+<a href="{% provider_login_url 'yandex' %}">Войдите с Yandex</a>
+{% endif %}
+{% endblock content %}
