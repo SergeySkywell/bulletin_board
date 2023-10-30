@@ -30,6 +30,7 @@ class Advertisement(models.Model):
     )
     category = models.CharField(max_length=2, choices=CATEGORY_CHOISES)
     dateCreation = models.DateTimeField(auto_now_add=True)
+    upload = models.FileField(upload_to='uploads/')
 
     def __str__(self):
         return f'{self.title}'
