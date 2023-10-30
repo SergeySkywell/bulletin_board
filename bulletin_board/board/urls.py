@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import AdsList, Ad, Index
+from .views import AdsList, Ad
 
 urlpatterns = [
-    path('', Index.as_view(template_name='index.html')),
+    path('', AdsList.as_view(template_name='ads.html')),
     path('ads/', AdsList.as_view(), name='Ads'),
     path('ad/<int:pk>', Ad.as_view()),
 ]

@@ -17,7 +17,4 @@ class Ad(DetailView):
     queryset = Advertisement.objects.all()
 
 
-class Index(ListView):
-    model = Advertisement
-    template_name = 'index.html'
-    context_object_name = 'index'
+
