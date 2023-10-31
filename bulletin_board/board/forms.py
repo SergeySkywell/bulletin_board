@@ -9,7 +9,6 @@ class AdvertisementForm(forms.ModelForm):
             'title',
             'category',
             'text',
-            'author',
             'image',
             'upload'
         ]
