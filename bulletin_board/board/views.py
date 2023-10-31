@@ -20,22 +20,23 @@ class Ad(DetailView):
     queryset = Advertisement.objects.all()
 
 
+
 class AdCreate(PermissionRequiredMixin, CreateView):
-    permission_required = ('accounts.add_advertisement',)
+    permission_required = ('board.add_advertisement',)
     form_class = AdvertisementForm
     model = Advertisement
     template_name = 'ad_edit.html'
 
 
 class AdEdit(PermissionRequiredMixin, UpdateView):
-    permission_required = ('accounts.change_advertisement',)
+    permission_required = ('board.change_advertisement',)
     form_class = AdvertisementForm
     model = Advertisement
     template_name = 'ad_edit.html'
 
 
 class AdDelete(PermissionRequiredMixin, DeleteView):
-    permission_required = ('accounts.delete_advertisement',)
+    permission_required = ('board.delete_advertisement',)
     model = Advertisement
     template_name = 'ad_delete.html'
     success_url = reverse_lazy('ads')
