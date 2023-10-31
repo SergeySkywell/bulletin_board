@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# Модель для объявлений
 class Advertisement(models.Model):
     title = models.CharField(max_length=64)
     text = models.TextField()
@@ -40,6 +41,7 @@ class Advertisement(models.Model):
         return f'/ad/{self.id}'
 
 
+# Модель для откликов
 class Response(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)

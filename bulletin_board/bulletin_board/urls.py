@@ -19,7 +19,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from board import views
+
 urlpatterns = [
+    path('admin/newsletter/', views.admin_newsletter, name='admin_newsletter'),
     path('admin/', admin.site.urls),
     path('', include('board.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
