@@ -44,3 +44,7 @@ class Response(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
     text = models.TextField()
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Отклик от пользователя {self.author} на объявление {self.advertisement.title}"

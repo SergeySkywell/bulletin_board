@@ -1,5 +1,5 @@
 from django import forms
-from .models import Advertisement
+from .models import Advertisement, Response
 
 
 class AdvertisementForm(forms.ModelForm):
@@ -12,3 +12,9 @@ class AdvertisementForm(forms.ModelForm):
             'image',
             'upload'
         ]
+
+
+class ResponseForm(forms.ModelForm):
+    class Meta:
+        model = Response
+        fields = ['text']
