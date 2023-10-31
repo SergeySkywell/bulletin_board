@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+<h2>Управление откликами</h2>
+
+<form method="get">
+    <select name="status">
+        <option value="">Все отклики</option>
+        <option value="accepted" {% if status_filter == "accepted" %}selected{% endif %}>Принятые</option>
+        <option value="pending" {% if status_filter == "pending" %}selected{% endif %}>Ожидающие</option>
+    </select>
+    <input type="submit" value="Фильтровать">
+</form>
+
+{% for ad in ads_with_responses %}
+    <h3>{{ ad.title }}</h3>
+    {% for response in ad.response_set.all %}
+        <div class="response">
+            <p>{{ response.text }}</p>
+            <a href="{% url 'accept_response' response.pk %}">Принять</a>
+            <a href="{% url 'delete_response' response.pk %}">Удалить</a>
+        </div>
+    {% endfor %}
+{% endfor %}
+{% endblock %}
