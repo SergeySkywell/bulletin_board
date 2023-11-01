@@ -6,8 +6,9 @@
 
 {% block content %}
     <h1>{{ ad.title }}</h1>
-    <h2>{{ ad.dateCreation|date:'d M Y' }}</h2>
-    {{ ad.text }}
+    <p>{{ ad.dateCreation|date:'d M Y' }}</p>
+    <p>{{ ad.text }}</p>
+    <p>Автор объявления: {{ ad.author }}</p>
     <br>
     {% if object.image %}
         <img width='500' src="{{ object.image.url }}">
@@ -15,5 +16,12 @@
     <br>
     {% if object.upload %}
        <a href="{{ ad.upload.url }}" download>Скачать файл</a>
+    {% endif %}
+    {% if user.is_authenticated and user != ad.author %}
+        <a href="{% url 'create_response' pk=ad.id %}">Оставить отклик</a>
+    {% endif %}
+    {% if user.is_authenticated and user == ad.author %}
+        <a href="{% url 'ad_edit' pk=ad.id %}">Редактировать</a>
+        <a href="{% url 'ad_delete' pk=ad.id %}">Удалить</a>
     {% endif %}
 {% endblock content %}

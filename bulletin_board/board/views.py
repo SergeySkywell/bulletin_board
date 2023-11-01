@@ -17,7 +17,8 @@ class AdsList(ListView):
     model = Advertisement
     template_name = 'ads.html'
     context_object_name = 'Ads'
-    paginate_by = 10
+    paginate_by = 3 # Сделал немного, чтобы можно было проверить работоспособность
+    ordering = ['-dateCreation']
 
 
 # Представление для страницы объявления

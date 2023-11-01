@@ -5,8 +5,12 @@
 {% endblock title %}
 
 {% block content %}
+
 <hr>
-    {% if ads %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'ad_create' %}">Добавить объявление</a>
+    {% endif %}
+<hr>
         <table>
             <tr>
                 <td>Название</td>
@@ -14,13 +18,35 @@
                 <td>Текст</td>
             </tr>
 
-            {% for ad in ads %}
+            {% for ad in Ads %}
             <tr>
-                <td>{{ ad.title }}</td>
+                <td><a href="{% url 'ad_detail' ad.id %}">{{ ad.title }}</a></td>
                 <td>{{ ad.dateCreation|date:'d M Y' }}</td>
                 <td>{{ ad.text|truncatewords:20 }}</td>
+                <td>
+                    {% if user.is_authenticated and user == ad.author %}
+                        <a href="{% url 'ad_edit' pk=ad.id %}">Редактировать</a>
+                        <a href="{% url 'ad_delete' pk=ad.id %}">Удалить</a>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>
-    {% endif %}
+           {% if page_obj.has_previous %}
+               <a href="?page=1">1</a>
+               {% if page_obj.previous_page_number != 1 %}
+                   ...
+                   <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+               {% endif %}
+           {% endif %}
+
+           {{ page_obj.number }}
+
+           {% if page_obj.has_next %}
+               <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+               {% if paginator.num_pages != page_obj.next_page_number %}
+                   ...
+                   <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+               {% endif %}
+           {% endif %}
 {% endblock content %}
